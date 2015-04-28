@@ -88,7 +88,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 signUp();
             }
         });
-        
+
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }

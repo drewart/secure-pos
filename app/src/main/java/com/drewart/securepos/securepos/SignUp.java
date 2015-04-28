@@ -27,4 +27,12 @@ import android.widget.TextView;
  * Created by Andreas on 4/27/2015.
  */
 public class SignUp extends Activity{
-}
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+    }
+
+    }
