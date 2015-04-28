@@ -17,6 +17,18 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login">
+
+        </activity>
+
+        <activity
+            android:name=".SignUp"
+            android:label="@string/title_activity_signUp">
+
+        </activity>
+
 
 
     </application>
