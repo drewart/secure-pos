@@ -1,9 +1,11 @@
 package com.drewart.securepos.securepos;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import java.util.*;
@@ -24,15 +26,24 @@ public class MainActivity extends ActionBarActivity {
     protected void addBankList() {
         bankListSpinner = (Spinner) findViewById(R.id.bankList);
         List<String> list = new ArrayList<String>();
-        list.add("Bank of Drew");
-        list.add("Bank of Jason");
-        list.add("Bank of Andreas");
+        list.add("US Bank");
+        list.add("Wellsfargo");
+
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bankListSpinner.setAdapter(dataAdapter);
 
+    }
+
+    public void onClickNext(View view) {
+
+        //TODO: check values
+
+        Intent intent = new Intent(this, ActivationActivity.class);
+        //TODO intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
     }
 
     protected void getValues() {

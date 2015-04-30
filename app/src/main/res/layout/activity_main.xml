@@ -145,6 +145,7 @@
         android:id="@+id/mainNextBtn"
         android:layout_alignTop="@+id/textView2"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="onClickNext" />
 
 </RelativeLayout>
