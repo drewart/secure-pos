@@ -4,14 +4,42 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import java.util.*;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private Spinner bankListSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        addBankList();
+    }
+
+
+    protected void addBankList() {
+        bankListSpinner = (Spinner) findViewById(R.id.bankList);
+        List<String> list = new ArrayList<String>();
+        list.add("Bank of Drew");
+        list.add("Bank of Jason");
+        list.add("Bank of Andreas");
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        bankListSpinner.setAdapter(dataAdapter);
+
+    }
+
+    protected void getValues() {
+
+        bankListSpinner =  (Spinner) findViewById(R.id.bankList);
+        String bankValue = String.valueOf(bankListSpinner.getSelectedItem());
+
     }
 
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" android:id="@+id/display_number">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0123456789101112"
-        android:id="@+id/cardnumber"
+        android:id="@+id/cardNumber"
         android:layout_marginTop="86dp"
         android:textSize="48dp"
         android:layout_alignParentTop="true"

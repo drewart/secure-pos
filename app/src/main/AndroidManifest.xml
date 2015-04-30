@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.drewart.securepos.securepos" >
-
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +19,8 @@
 
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login">
+            android:label="@string/title_activity_login"
+            >
 
         </activity>
 
