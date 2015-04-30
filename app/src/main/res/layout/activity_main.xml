@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/editTextName"
         android:layout_alignBottom="@+id/textView"
         android:layout_alignLeft="@+id/editTextEmail"
         android:layout_alignStart="@+id/editTextEmail" />
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/editTextPhone"
         android:layout_alignBottom="@+id/textView3"
         android:layout_alignLeft="@+id/editTextEmail"
         android:layout_alignStart="@+id/editTextEmail" />
@@ -90,13 +90,13 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
+        android:id="@+id/bankOption"
         android:choiceMode="singleChoice"
         android:layout_alignTop="@+id/textView4"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
+        android:layout_alignRight="@+id/editTextPhone"
+        android:layout_alignEnd="@+id/editTextPhone"
+        android:layout_alignLeft="@+id/editTextPhone"
+        android:layout_alignStart="@+id/editTextPhone"
         android:layout_above="@+id/signUp_button" />
 
     <ScrollView
@@ -108,7 +108,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" >
+        android:layout_alignParentBottom="true"
+        android:fillViewport="false">
 
     </ScrollView>
 
