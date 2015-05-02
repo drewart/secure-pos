@@ -14,20 +14,16 @@
         android:id="@+id/imageView"
         android:src="@mipmap/samplebarcode"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Deactivate"
         android:id="@+id/deactivateButton"
-        android:layout_marginRight="103dp"
-        android:layout_marginEnd="103dp"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/imageView"
+        android:layout_marginRight="106dp"
+        android:layout_marginEnd="106dp"
+        android:layout_alignTop="@+id/number_display_button"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -36,9 +32,10 @@
         android:layout_height="wrap_content"
         android:text="card number"
         android:id="@+id/number_display_button"
-        android:layout_marginLeft="111dp"
-        android:layout_marginStart="111dp"
-        android:layout_alignTop="@+id/deactivateButton"
+        android:layout_marginLeft="106dp"
+        android:layout_marginStart="106dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="46dp" />
 </RelativeLayout>
