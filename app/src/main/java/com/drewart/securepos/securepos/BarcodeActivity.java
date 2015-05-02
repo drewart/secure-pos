@@ -34,7 +34,7 @@ public class BarcodeActivity extends Activity {
 
     public void switchToNumber() {
         Intent i = new Intent(getApplicationContext(), NumberDisplayActivity.class);
-        startActivityForResult(i, 0);
+        startActivity(i);
     }
 
     public void completionPage() {

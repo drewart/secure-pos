@@ -21,7 +21,7 @@ public class NumberDisplayActivity extends Activity {
             @Override
             public void onClick(View view) {
                 //switchToBarcode();
-                finishActivity(0);
+                finish();
             }
         });
 

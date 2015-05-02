@@ -71,7 +71,7 @@ public class LoginActivity extends Activity  {
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-//                attemptLogin();
+                attemptLogin();
                 goToActivate();
             }
         });

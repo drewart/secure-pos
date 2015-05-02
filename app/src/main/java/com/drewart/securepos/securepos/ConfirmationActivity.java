@@ -15,15 +15,9 @@ public class ConfirmationActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmationpage);
 
-        Button closeApp = (Button) findViewById(R.id.closeapp_button);
-        closeApp.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v){
-                finish();
-                System.exit(0);
-            }
-
-        });
     }
+
+    // prevents users from going back through the app by disabling it
+    @Override
+    public void onBackPressed(){}
 }

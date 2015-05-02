@@ -28,6 +28,8 @@ public class ActivationActivity extends Activity {
     public void activate() {
         Intent i = new Intent(getApplicationContext(), BarcodeActivity.class);
         startActivity(i);
+        //closes activity immediately; prevents user from accidentally reactivating
+        finish();
     }
 }
 
