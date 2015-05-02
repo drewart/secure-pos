@@ -246,7 +246,8 @@ public class LoginActivity extends Activity  {
                     return pieces[1].equals(mPassword);
                 }
             }
-
+            Intent i = new Intent(getApplicationContext(), ActivationActivity.class);
+            startActivity(i);
             // TODO: register the new account here.
             return true;
         }
@@ -256,12 +257,15 @@ public class LoginActivity extends Activity  {
             mAuthTask = null;
             showProgress(false);
 
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
+
+//            if (success) {
+//                finish();
+//                Intent i = new Intent(getApplicationContext(), ActivationActivity.class);
+//                startActivity(i);
+//            } else {
+//                mPasswordView.setError(getString(R.string.error_incorrect_password));
+//                mPasswordView.requestFocus();
+//            }
         }
 
         @Override

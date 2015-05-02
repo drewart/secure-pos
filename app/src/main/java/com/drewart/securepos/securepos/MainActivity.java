@@ -1,5 +1,6 @@
 package com.drewart.securepos.securepos;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
@@ -28,7 +29,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     private AddUser mAuthTask = null;
     private String name;
@@ -96,7 +97,10 @@ public class MainActivity extends ActionBarActivity {
         nameValuePairs.add(new BasicNameValuePair("phone",phone));
         //nameValuePairs.add(new BasicNameValuePair("bank",bank));
 
-        mAuthTask = new AddUser(nameValuePairs);
+
+        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(i);
+//        mAuthTask = new AddUser(nameValuePairs);
     }
 
     public class AddUser extends AsyncTask<Void, Void, Boolean> {
@@ -110,64 +114,67 @@ public class MainActivity extends ActionBarActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            try
-            {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("https://students.washington.edu/andreas5/insert.php");
-                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                HttpResponse response = httpclient.execute(httppost);
-                HttpEntity entity = response.getEntity();
-                is = entity.getContent();
-                Log.e("pass 1", "connection success ");
-            }
-            catch(Exception e)
-            {
-                Log.e("Fail 1", e.toString());
-                Toast.makeText(getApplicationContext(), "Invalid IP Address",
-                        Toast.LENGTH_LONG).show();
-            }
-
-            try
-            {
-                BufferedReader reader = new BufferedReader
-                        (new InputStreamReader(is,"iso-8859-1"),8);
-                StringBuilder sb = new StringBuilder();
-                while ((line = reader.readLine()) != null)
-                {
-                    sb.append(line + "\n");
-                }
-                is.close();
-                result = sb.toString();
-                Log.e("pass 2", "connection success ");
-            }
-            catch(Exception e)
-            {
-                Log.e("Fail 2", e.toString());
-            }
-
-            try
-            {
-                JSONObject json_data = new JSONObject(result);
-                code=(json_data.getInt("code"));
-
-                if(code==1)
-                {
-                    Toast.makeText(getBaseContext(), "Inserted Successfully",
-                            Toast.LENGTH_SHORT).show();
-
-                    Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(i);
-                }
-                else
-                {
-                    Toast.makeText(getBaseContext(), "Sorry, Try Again",
-                            Toast.LENGTH_LONG).show();
-                }
-            }
-            catch(Exception e)
-            {
-                Log.e("Fail 3", e.toString());
-            }
+            Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(i);
+//            try
+//            {
+////                final String url = "https://students.washington.edu/andreas5/insert.php";
+//                HttpClient httpclient = new DefaultHttpClient();
+//                HttpPost httppost = new HttpPost("https://students.washington.edu/andreas5/insert.php");
+//                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+//                HttpResponse response = httpclient.execute(httppost);
+//                HttpEntity entity = response.getEntity();
+//                is = entity.getContent();
+//                Log.e("pass 1", "connection success ");
+//            }
+//            catch(Exception e)
+//            {
+//                Log.e("Fail 1", e.toString());
+//                Toast.makeText(getApplicationContext(), "Invalid IP Address",
+//                        Toast.LENGTH_LONG).show();
+//            }
+//
+//            try
+//            {
+//                BufferedReader reader = new BufferedReader
+//                        (new InputStreamReader(is,"iso-8859-1"),8);
+//                StringBuilder sb = new StringBuilder();
+//                while ((line = reader.readLine()) != null)
+//                {
+//                    sb.append(line + "\n");
+//                }
+//                is.close();
+//                result = sb.toString();
+//                Log.e("pass 2", "connection success ");
+//            }
+//            catch(Exception e)
+//            {
+//                Log.e("Fail 2", e.toString());
+//            }
+//
+//            try
+//            {
+//                JSONObject json_data = new JSONObject(result);
+//                code=(json_data.getInt("code"));
+//
+//                if(code==1)
+//                {
+//                    Toast.makeText(getBaseContext(), "Inserted Successfully",
+//                            Toast.LENGTH_SHORT).show();
+//
+//                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+//                    startActivity(i);
+//                }
+//                else
+//                {
+//                    Toast.makeText(getBaseContext(), "Sorry, Try Again",
+//                            Toast.LENGTH_LONG).show();
+//                }
+//            }
+//            catch(Exception e)
+//            {
+//                Log.e("Fail 3", e.toString());
+//            }
 
             return true;
         }
