@@ -20,13 +20,27 @@ public class NumberDisplayActivity extends Activity {
         mBarcodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switchToBarcode();
+                //switchToBarcode();
+                finishActivity(0);
+            }
+        });
+
+        Button mFinishActivity = (Button)findViewById(R.id.deactivateButton);
+        mFinishActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                completionPage();
             }
         });
     }
 
     public void switchToBarcode() {
         Intent i = new Intent(getApplicationContext(), BarcodeActivity.class);
+        startActivity(i);
+    }
+
+    public void completionPage() {
+        Intent i = new Intent(getApplicationContext(), ConfirmationActivity.class);
         startActivity(i);
     }
 

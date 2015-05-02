@@ -7,4 +7,6 @@
     <string name="title_activity_activation">Activation Page</string>
     <string name="title_activity_barcode">Barcode Page</string>
     <string name="title_activity_number_display">Number Display Page</string>
+    <string name="title_activity_confirmation">Thank you!</string>
+
 </resources>

@@ -22,10 +22,23 @@ public class BarcodeActivity extends Activity {
                 switchToNumber();
             }
         });
+
+        Button mFinishActivity = (Button)findViewById(R.id.deactivateButton);
+        mFinishActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                completionPage();
+            }
+        });
     }
 
     public void switchToNumber() {
         Intent i = new Intent(getApplicationContext(), NumberDisplayActivity.class);
+        startActivityForResult(i, 0);
+    }
+
+    public void completionPage() {
+        Intent i = new Intent(getApplicationContext(), ConfirmationActivity.class);
         startActivity(i);
     }
 }
