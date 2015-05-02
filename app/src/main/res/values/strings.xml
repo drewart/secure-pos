@@ -4,5 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Login Page</string>
-    <string name="title_activity_signUp">Sign Up Page</string>
+    <string name="title_activity_activation">Activation Page</string>
+    <string name="title_activity_barcode">Barcode Page</string>
+    <string name="title_activity_number_display">Number Display Page</string>
 </resources>
