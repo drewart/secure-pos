@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false"
-    android:weightSum="1"
     android:id="@+id/id">
 
 
@@ -12,6 +11,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@mipmap/samplebarcode"
+        android:layout_marginTop="46dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -20,21 +20,29 @@
         android:layout_height="wrap_content"
         android:text="Deactivate"
         android:id="@+id/deactivateButton"
-        android:layout_marginRight="106dp"
-        android:layout_marginEnd="106dp"
         android:layout_alignTop="@+id/number_display_button"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView"
+        android:layout_marginLeft="45dp"
+        android:layout_marginStart="45dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="card number"
         android:id="@+id/number_display_button"
-        android:layout_marginLeft="106dp"
-        android:layout_marginStart="106dp"
+        android:layout_marginBottom="43dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="46dp" />
+        android:layout_toLeftOf="@+id/imageView"
+        android:layout_toStartOf="@+id/imageView"
+        android:layout_marginRight="26dp"
+        android:layout_marginEnd="26dp" />
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chronometer"
+        android:layout_alignBottom="@+id/number_display_button"
+        android:layout_centerHorizontal="true"
+        android:text="60" />
 </RelativeLayout>
