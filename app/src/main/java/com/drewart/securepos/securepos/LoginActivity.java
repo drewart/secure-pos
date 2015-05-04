@@ -53,25 +53,26 @@ public class LoginActivity extends Activity  {
         setContentView(R.layout.activity_login);
 
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.integer.customImeActionId || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
+//        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+//
+//        mPasswordView = (EditText) findViewById(R.id.password);
+//        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+//                if (id == R.integer.customImeActionId || id == EditorInfo.IME_NULL) {
+//                    attemptLogin();
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+               // attemptLogin();
+                goToActivate();
             }
         });
 
@@ -83,8 +84,8 @@ public class LoginActivity extends Activity  {
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+//        mLoginFormView = findViewById(R.id.login_form);
+//        mProgressView = findViewById(R.id.login_progress);
     }
 
 
@@ -92,6 +93,11 @@ public class LoginActivity extends Activity  {
 
     public void signUp() {
         Intent i = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(i);
+    }
+
+    public void goToActivate() {
+        Intent i = new Intent(LoginActivity.this, ActivationActivity.class);
         startActivity(i);
     }
 
@@ -246,7 +252,8 @@ public class LoginActivity extends Activity  {
                     return pieces[1].equals(mPassword);
                 }
             }
-
+            Intent i = new Intent(LoginActivity.this, ActivationActivity.class);
+            startActivity(i);
             // TODO: register the new account here.
             return true;
         }
@@ -255,13 +262,16 @@ public class LoginActivity extends Activity  {
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
+//            Intent i = new Intent(LoginActivity.this, ActivationActivity.class);
+//            startActivity(i);
+//            if (success) {
+//                finish();
+//                Intent i = new Intent(LoginActivity.this, ActivationActivity.class);
+//                startActivity(i);
+//            } else {
+//                mPasswordView.setError(getString(R.string.error_incorrect_password));
+//                mPasswordView.requestFocus();
+//            }
         }
 
         @Override

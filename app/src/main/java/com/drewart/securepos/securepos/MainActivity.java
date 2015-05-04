@@ -1,5 +1,6 @@
 package com.drewart.securepos.securepos;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewDebug;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,7 +30,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     private AddUser mAuthTask = null;
     private String name;
@@ -96,7 +98,9 @@ public class MainActivity extends ActionBarActivity {
         nameValuePairs.add(new BasicNameValuePair("phone",phone));
         //nameValuePairs.add(new BasicNameValuePair("bank",bank));
 
+
         mAuthTask = new AddUser(nameValuePairs);
+        mAuthTask.execute((Void) null);
     }
 
     public class AddUser extends AsyncTask<Void, Void, Boolean> {
@@ -112,6 +116,7 @@ public class MainActivity extends ActionBarActivity {
 
             try
             {
+//                final String url = "https://students.washington.edu/andreas5/insert.php";
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new HttpPost("https://students.washington.edu/andreas5/insert.php");
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
@@ -134,7 +139,7 @@ public class MainActivity extends ActionBarActivity {
                 StringBuilder sb = new StringBuilder();
                 while ((line = reader.readLine()) != null)
                 {
-                    sb.append(line + "\n");
+                    sb.append(line);
                 }
                 is.close();
                 result = sb.toString();
@@ -144,18 +149,27 @@ public class MainActivity extends ActionBarActivity {
             {
                 Log.e("Fail 2", e.toString());
             }
+            return true;
+        }
 
+        @Override
+        protected void onPostExecute(final Boolean success) {
+//            mAuthTask = null;
+//            showProgress(false);
+//
             try
             {
                 JSONObject json_data = new JSONObject(result);
                 code=(json_data.getInt("code"));
+
+                Log.e("code: " , String.valueOf(code));
 
                 if(code==1)
                 {
                     Toast.makeText(getBaseContext(), "Inserted Successfully",
                             Toast.LENGTH_SHORT).show();
 
-                    Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(i);
                 }
                 else
@@ -168,22 +182,7 @@ public class MainActivity extends ActionBarActivity {
             {
                 Log.e("Fail 3", e.toString());
             }
-
-            return true;
         }
-
-//        @Override
-//        protected void onPostExecute(final Boolean success) {
-//            mAuthTask = null;
-//            showProgress(false);
-//
-//            if (success) {
-//                finish();
-//            } else {
-//                mPasswordView.setError(getString(R.string.error_incorrect_password));
-//                mPasswordView.requestFocus();
-//            }
-//        }
 //
 //        @Override
 //        protected void onCancelled() {

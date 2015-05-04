@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/id">
+    android:id="@+id/activation"
+    android:focusableInTouchMode="false"
+    android:focusable="false">
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,7 +46,6 @@
         android:ems="10"
         android:id="@+id/userLimit"
         android:layout_gravity="center_horizontal"
-        android:text="$"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -53,7 +54,7 @@
         android:layout_width="372dp"
         android:layout_height="wrap_content"
         android:text="Activate"
-        android:id="@+id/activateCard"
+        android:id="@+id/activation_button"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
@@ -61,4 +62,14 @@
         android:layout_marginBottom="83dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="$"
+        android:id="@+id/textView5"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/userLimit"
+        android:layout_toStartOf="@+id/userLimit" />
 </RelativeLayout>
