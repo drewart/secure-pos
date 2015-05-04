@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/nameText"
+        android:id="@+id/editTextName"
         android:layout_alignBottom="@+id/textView"
         android:layout_alignLeft="@+id/editTextEmail"
         android:layout_alignStart="@+id/editTextEmail" />
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:inputType="numberPassword"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/editTextPin"
         android:layout_below="@+id/bankList"
         android:layout_alignLeft="@+id/bankList"
         android:layout_alignStart="@+id/bankList" />
@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="pin"
-        android:id="@+id/textView5"
+        android:id="@+id/textViewPin"
         android:layout_below="@+id/bankList"
         android:layout_alignLeft="@+id/textView4"
         android:layout_alignStart="@+id/textView4" />
@@ -123,29 +123,32 @@
         android:layout_height="wrap_content"
         android:inputType="numberPassword"
         android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:id="@+id/editTextPin2"
+        android:layout_below="@+id/editTextPin"
+        android:layout_alignLeft="@+id/editTextPin"
+        android:layout_alignStart="@+id/editTextPin" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="re-pin"
-        android:id="@+id/textView6"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_alignStart="@+id/textView5" />
+        android:id="@+id/textViewRePin"
+        android:layout_below="@+id/editTextPin"
+        android:layout_alignLeft="@+id/textViewPin"
+        android:layout_alignStart="@+id/textViewPin" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="next"
         android:id="@+id/mainNextBtn"
-        android:layout_alignTop="@+id/textView2"
+        android:onClick="onClickNext"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="onClickNext" />
+        android:layout_alignLeft="@+id/textViewRePin"
+        android:layout_alignStart="@+id/textViewRePin"
+        android:layout_alignParentBottom="true"
+        android:textSize="24dp" />
 
 </RelativeLayout>
