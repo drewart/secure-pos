@@ -10,8 +10,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewDebug;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -28,6 +30,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends Activity {
@@ -41,17 +44,20 @@ public class MainActivity extends Activity {
     private String result=null;
     private String line=null;
     private int code;
+    private Spinner bankListSpinner;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // TODO: maybe download from server and have a local cache
+        addBankList();
 
        final EditText e_name    = (EditText) findViewById(R.id.editTextName);
        final EditText e_email   = (EditText) findViewById(R.id.editTextEmail);
        final EditText e_phone   = (EditText) findViewById(R.id.editTextPhone);
-       //final EditText e_bank    = (EditText) findViewById(R.id.bankOption);
+       bankListSpinner     = (Spinner) findViewById(R.id.spinnerBank);
 
         Button mSignUpButton = (Button)findViewById(R.id.signUp_button);
         mSignUpButton.setOnClickListener(new View.OnClickListener() {
@@ -60,11 +66,34 @@ public class MainActivity extends Activity {
                 name    = e_name.getText().toString();
                 email   = e_email.getText().toString();
                 phone   = e_phone.getText().toString();
-                //bank    = e_bank.getText().toString();
-                signUp();
+                bank    = bankListSpinner.getSelectedItem().toString();
+                if (validate())
+                    signUp();
             }
         });
     }
+
+    protected boolean validate() {
+        // TODO: add logic
+        return true;
+    }
+
+
+    protected void addBankList() {
+        bankListSpinner = (Spinner) findViewById(R.id.spinnerBank);
+        List<String> list = new ArrayList<String>();
+        list.add("US Bank");
+        list.add("Wellsfargo");
+        list.add("Bank of America");
+
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        bankListSpinner.setAdapter(dataAdapter);
+
+    }
+
 
 
     @Override
@@ -96,7 +125,7 @@ public class MainActivity extends Activity {
         nameValuePairs.add(new BasicNameValuePair("name",name));
         nameValuePairs.add(new BasicNameValuePair("email",email));
         nameValuePairs.add(new BasicNameValuePair("phone",phone));
-        //nameValuePairs.add(new BasicNameValuePair("bank",bank));
+        nameValuePairs.add(new BasicNameValuePair("bank",bank));
 
 
         mAuthTask = new AddUser(nameValuePairs);
