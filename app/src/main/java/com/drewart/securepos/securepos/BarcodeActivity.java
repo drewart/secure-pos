@@ -54,7 +54,11 @@ public class BarcodeActivity extends Activity {
     }
 
 
+    public void foo() {
 
+      //  javax.security.cert.X509Certificate
+
+    }
     public void generateBarCode() {
         // barcode data
         String barcode_data = "4111111111111111";
