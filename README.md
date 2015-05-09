@@ -2,5 +2,7 @@
 hello world!
 
 ## TODO:
- * mockups
- * design  
+ * Validate register
+ * Email Validate link
+ * Sign in Validation
+ * Get actual card details (remove hard coded credentials) 
