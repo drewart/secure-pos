@@ -1,9 +1,9 @@
 
 <?php
-	$host='vergil.u.washington.edu:39865';
-	$uname='root';
-	$pwd='password';
-	$db="android";
+	$host='url';
+	$uname='uname';
+	$pwd='pwd';
+	$db="db";
 
 	$con = mysql_connect($host,$uname,$pwd) or die("connection failed");
 	mysql_select_db($db,$con) or die("db selection failed");
