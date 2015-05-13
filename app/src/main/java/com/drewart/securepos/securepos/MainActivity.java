@@ -35,6 +35,8 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
+
+
     private AddUser mAuthTask = null;
     private String name;
     private String email;
@@ -145,9 +147,8 @@ public class MainActivity extends Activity {
 
             try
             {
-//                final String url = "https://students.washington.edu/andreas5/insert.php";
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("https://students.washington.edu/andreas5/insert.php");
+                HttpPost httppost = new HttpPost(Settings.RegistrationUrl);
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
