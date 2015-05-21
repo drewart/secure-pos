@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 /**
  * Created by Andreas on 5/1/2015.
@@ -15,6 +16,14 @@ public class ActivationActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activation);
+
+        final EditText editText = (EditText)findViewById(R.id.userPin);
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editText.getText().clear();
+            }
+        });
 
         Button mActivateButton = (Button)findViewById(R.id.activation_button);
         mActivateButton.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +40,7 @@ public class ActivationActivity extends Activity {
         //closes activity immediately; prevents user from accidentally reactivating
         finish();
     }
+
 }
 
 

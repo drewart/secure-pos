@@ -77,6 +77,7 @@ public class MainActivity extends Activity {
 
     protected boolean validate() {
         // TODO: add logic
+        // use TextWatcher
         return true;
     }
 
