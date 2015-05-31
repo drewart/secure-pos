@@ -6,4 +6,5 @@ package com.drewart.securepos.securepos;
 public class Settings {
 
     final static String RegistrationUrl = "https://students.washington.edu/andreas5/insert.php";
+    //final static String RegistrationUrl
 }
