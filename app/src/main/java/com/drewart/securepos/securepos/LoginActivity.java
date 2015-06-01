@@ -4,7 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -51,6 +53,17 @@ public class LoginActivity extends Activity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        SharedPreferences sharedPref = getSharedPreferences(
+                getString(R.string.share_pref_file_name), Context.MODE_PRIVATE);
+
+        // check if registered
+        if (sharedPref.getBoolean("registered", false) == true) {
+            goToActivate();
+        } else {
+            signUp();
+        }
 
         // Set up the login form.
 //        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);

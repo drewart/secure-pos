@@ -9,4 +9,9 @@
     <string name="title_activity_number_display">Number Display Page</string>
     <string name="title_activity_confirmation">Thank you!</string>
 
+    <string name="share_pref_file_name">local.setting</string>
+
+    <string name="pin_error_length">Pin is not long enough</string>
+    <string name="pin_error_match">Pin does not match</string>
+    <string name="phone_digit_length">Phone is not long enough</string>
 </resources>
