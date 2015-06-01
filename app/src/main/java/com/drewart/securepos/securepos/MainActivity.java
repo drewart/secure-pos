@@ -304,6 +304,10 @@ public class MainActivity extends Activity {
                 JSONObject json_data = new JSONObject(result);
                 code=(json_data.getInt("code"));
 
+                String message = json_data.getString("message");
+
+
+
                 Log.e("code: " , String.valueOf(code));
 
                 if(code==1)
@@ -317,14 +321,18 @@ public class MainActivity extends Activity {
                     SharedPreferences.Editor prefEditor = sharedPref.edit();
 
                     prefEditor.putBoolean("registered",true);
+
+                    // save settings
                     prefEditor.apply();
 
                     Intent i = new Intent(getApplicationContext(), ActivationActivity.class);
                     startActivity(i);
+
+                    finish();
                 }
                 else
                 {
-                    Toast.makeText(getBaseContext(), "Sorry, Try Again",
+                    Toast.makeText(getBaseContext(), message,
                             Toast.LENGTH_LONG).show();
                 }
             }

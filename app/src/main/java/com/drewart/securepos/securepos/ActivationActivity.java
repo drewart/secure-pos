@@ -17,11 +17,11 @@ public class ActivationActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activation);
 
-        final EditText editText = (EditText)findViewById(R.id.userPin);
-        editText.setOnClickListener(new View.OnClickListener() {
+        final EditText pinView = (EditText)findViewById(R.id.userPin);
+        pinView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editText.getText().clear();
+                pinView.getText().clear();
             }
         });
 
@@ -32,9 +32,16 @@ public class ActivationActivity extends Activity {
                 activate();
             }
         });
+
+        pinView.requestFocus();
+
     }
 
     public void activate() {
+
+        // TODO validate pin
+
+
         Intent i = new Intent(getApplicationContext(), BarcodeActivity.class);
         startActivity(i);
         //closes activity immediately; prevents user from accidentally reactivating
