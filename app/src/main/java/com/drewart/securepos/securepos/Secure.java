@@ -111,13 +111,6 @@ public class Secure {
         return Arrays.copyOfRange(b2, 1, b2.length);
     }
 
-    public void PrintPKCS1(PublicKey key) {
-        X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(
-                publicKey.getEncoded());
-
-
-    }
-
 
     public void SaveKeyPair(String path, KeyPair keyPair) throws IOException {
         PrivateKey privateKey = keyPair.getPrivate();
@@ -180,7 +173,7 @@ public class Secure {
         return new String(hexChars);
     }
 
-    // 
+    //
     public static byte[] hexStringToByteArray(String s) {
         int len = s.length();
         byte[] data = new byte[len / 2];

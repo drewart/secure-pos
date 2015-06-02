@@ -208,6 +208,28 @@ public class MainActivity extends Activity {
     }
 
 
+    public String jsonString() {
+        String json = null;
+        try {
+            json = new JSONStringer()
+                    .object().key("name").value(name)
+                    .key("email").value(email)
+                    .key("phone").value(phone)
+                    .key("bank").value(bank)
+                    .key("pin").value(pin)
+                    .endObject().toString();
+        } catch (JSONException je)
+        {
+            //error
+            Toast.makeText(getApplicationContext(), je.getMessage(),
+                    Toast.LENGTH_LONG).show();
+            Log.e("Fail 1", je.toString());
+        }
+        return json;
+
+    }
+
+
     public void signUp() {
 
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
@@ -217,29 +239,17 @@ public class MainActivity extends Activity {
         nameValuePairs.add(new BasicNameValuePair("bank", bank));
         // encrypted
         nameValuePairs.add(new BasicNameValuePair("pin", pin));
-        String json;
-        try {
-            json = new JSONStringer()
-                    .object().key("name").value(name)
-                    .key("email").value(email)
-                    .key("phone").value(phone)
-                    .key("bank").value(bank)
-                    .key("pin").value(pin)
-                    .endObject().toString();
-           /* json.append("{");
-            json.append("name:'").append(name).append("'");
-            json.append("email:'").append(email).append("'");
-            json.append("phone:'").append(phone).append("'");
-            json.append("bank:'").append(bank).append("'");
-            json.append("pin:'").append(pin).append("'");
-            json.append("}");*/
-        } catch (JSONException je)
-        {
-            //error
-            Toast.makeText(getApplicationContext(), je.getMessage(),
-                    Toast.LENGTH_LONG).show();
-            Log.e("Fail 1", je.toString());
-        }
+
+        /*try {
+        //TODO encrypted pin
+            Secure secure = new Secure();
+            secure.GenKey();
+            nameValuePairs.add(new BasicNameValuePair("pin", secure.Encrypt(pin)));
+
+        } catch (Exception e) {
+            Log.e("Fail 1-1", e.toString());
+        }*/
+
 
         mAuthTask = new AddUser(nameValuePairs);
         mAuthTask.execute((Void) null);
@@ -260,7 +270,7 @@ public class MainActivity extends Activity {
             {
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new HttpPost(Settings.RegistrationUrl);
-                httppost.setHeader("public-key","0123456789");
+                //httppost.setHeader("public-key","0123456789");
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
@@ -320,6 +330,7 @@ public class MainActivity extends Activity {
 
                     SharedPreferences.Editor prefEditor = sharedPref.edit();
 
+                    prefEditor.putString("email",email);
                     prefEditor.putBoolean("registered",true);
 
                     // save settings
