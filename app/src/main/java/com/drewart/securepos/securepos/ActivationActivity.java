@@ -44,8 +44,6 @@ public class ActivationActivity extends Activity {
 
         Intent i = new Intent(getApplicationContext(), BarcodeActivity.class);
         startActivity(i);
-        //closes activity immediately; prevents user from accidentally reactivating
-        finish();
     }
 
 }
