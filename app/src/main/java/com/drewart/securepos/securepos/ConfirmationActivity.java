@@ -19,5 +19,7 @@ public class ConfirmationActivity extends Activity{
 
     // prevents users from going back through the app by disabling it
     @Override
-    public void onBackPressed(){}
+    public void onBackPressed(){
+        finish();
+    }
 }

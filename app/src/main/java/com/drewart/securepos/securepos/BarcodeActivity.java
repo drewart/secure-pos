@@ -152,6 +152,7 @@ public class BarcodeActivity extends Activity {
     public void completionPage() {
         Intent i = new Intent(getApplicationContext(), ConfirmationActivity.class);
         startActivity(i);
+        finish();
     }
 
 
