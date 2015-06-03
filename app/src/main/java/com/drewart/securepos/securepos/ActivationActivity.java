@@ -201,47 +201,55 @@ public class ActivationActivity extends Activity {
 //            mAuthTask = null;
 //            showProgress(false);
 //        }
-        try {
-            SharedPreferences sharedPref = getSharedPreferences(
-                    getString(R.string.share_pref_file_name), Context.MODE_PRIVATE);
+        protected void pinEncryption() {
+            try {
+                SharedPreferences sharedPref = getSharedPreferences(
+                        getString(R.string.share_pref_file_name), Context.MODE_PRIVATE);
 
-            String privateKeyStr = sharedPref.getString("secure.private-key","");
-            String publicKeyStr = sharedPref.getString("secure.public-key", "");
-            if (TextUtils.isEmpty(privateKeyStr) || TextUtils.isEmpty(publicKeyStr)) {
-                pinView.setError("Security Key Not Found");
+                String privateKeyStr = sharedPref.getString("secure.private-key", "");
+                String publicKeyStr = sharedPref.getString("secure.public-key", "");
+                if (TextUtils.isEmpty(privateKeyStr) || TextUtils.isEmpty(publicKeyStr)) {
+                    pinView.setError("Security Key Not Found");
+                }
+                Secure secure = new Secure();
+
+                try {
+                    secure.LoadFromBase64String(privateKeyStr, publicKeyStr);
+                } catch (Exception e) {
+                    Log.e("Error converting", e.toString());
+                }
+                String pinRaw = pinView.getText().toString();
+
+                if (TextUtils.isEmpty(pinRaw)) {
+                    pinView.setError(getString(R.string.error_field_required));
+                    return;
+                }
+
+                try {
+                    String pinEncrypt = secure.Encrypt(pinRaw);
+                    String localPin = sharedPref.getString("secure.pin", "");
+
+                    // TODO replace with server call validation
+
+                    if (TextUtils.isEmpty(localPin)) {
+                        pinView.setError("local pin not found");
+                        return;
+                    } // verify local machine
+                    else if (!pinEncrypt.equals(localPin)) {
+                        pinView.setError(getString(R.string.pin_error_match));
+                        return;
+                    }
+                } catch (Exception e) {
+                    Log.e("Error encrypting pin", e.toString());
+                }
+
+            } catch (Exception e) {
+
+                Log.e("Error Activation 1", e.toString());
+                pinView.setError("Security Key Store Issues");
+
             }
-            Secure secure = new Secure();
-            secure.LoadFromBase64String(privateKeyStr, publicKeyStr);
-
-            String pinRaw = pinView.getText().toString();
-
-            if (TextUtils.isEmpty(pinRaw)) {
-                pinView.setError(getString(R.string.error_field_required));
-                return;
-            }
-
-            String pinEncrypt = secure.Encrypt(pinRaw);
-
-            String localPin = sharedPref.getString("secure.pin","");
-
-            // TODO replace with server call validation
-
-            if (TextUtils.isEmpty(localPin)) {
-                pinView.setError("local pin not found");
-                return;
-            } // verify local machine
-            else if (!pinEncrypt.equals(localPin)) {
-                pinView.setError(getString(R.string.pin_error_match));
-                return;
-            }
-
-        } catch (Exception e) {
-
-            Log.e("Error Activation 1", e.toString());
-            pinView.setError("Security Key Store Issues");
-
         }
-
 
     }
 
