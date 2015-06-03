@@ -97,7 +97,7 @@ public class MainActivity extends Activity {
 
     // gantlet of field validation
     protected boolean validate() {
-        // TODO: add logic
+        //
         // Check for a valid password, if the user entered one.
        /* if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
@@ -109,7 +109,7 @@ public class MainActivity extends Activity {
         View focusView = null;
 
 
-        if (TextUtils.isEmpty(name)) {
+        if (TextUtils.isEmpty(name)) {  //TODO: name is empty and can still insert
             nameView.setError(getString(R.string.error_field_required));
             focusView = nameView;
             valid = false;
@@ -127,7 +127,7 @@ public class MainActivity extends Activity {
             valid = false;
         }
 
-        // Check for a valid email address.
+        // Check for a valid email address. //TODO: Can still insert without reasonable email (low priority)
         if (TextUtils.isEmpty(email)) {
             emailView.setError(getString(R.string.error_field_required));
             focusView = emailView;
@@ -144,14 +144,15 @@ public class MainActivity extends Activity {
             focusView = pinView;
             valid = false;
         }
-        else if (!pin.equals(pin2)) {
+        else if (!pin.equals(pin2)) {   //TODO: if pin doesn't match it still inserts
             rePinView.setError(getString(R.string.pin_error_match));
             focusView = rePinView;
             valid = false;
         }
 
-        if (!valid)
+        if (!valid) {
             focusView.requestFocus();
+        }
 
         return true;
     }
@@ -306,8 +307,7 @@ public class MainActivity extends Activity {
 
         @Override
         protected void onPostExecute(final Boolean success) {
-//            mAuthTask = null;
-//            showProgress(false);
+
 //
             try
             {
