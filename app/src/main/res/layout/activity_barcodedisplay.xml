@@ -12,7 +12,14 @@
         android:id="@+id/imageViewBarCode"
         android:layout_marginTop="46dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:outlineProvider="background"
+        android:minHeight="300dp"
+        android:minWidth="100dp"
+        android:maxWidth="200dp"
+        android:longClickable="true"
+        android:maxHeight="500dp" />
 
     <Button
         android:layout_width="wrap_content"

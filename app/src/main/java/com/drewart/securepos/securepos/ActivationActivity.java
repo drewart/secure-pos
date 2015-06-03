@@ -2,10 +2,12 @@ package com.drewart.securepos.securepos;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 /**
  * Created by Andreas on 5/1/2015.
@@ -35,6 +37,16 @@ public class ActivationActivity extends Activity {
         });
 
         pinView.requestFocus();
+
+        ImageButton button = (ImageButton) findViewById(R.id.resetButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
+            }
+        });
+
 
     }
 

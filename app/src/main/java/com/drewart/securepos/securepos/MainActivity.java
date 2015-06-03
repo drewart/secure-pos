@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -17,7 +18,9 @@ import android.view.ViewDebug;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -35,8 +38,17 @@ import org.json.JSONStringer;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.security.InvalidKeyException;
+import java.security.KeyPair;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.concurrent.Executor;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 
 public class MainActivity extends Activity {
@@ -53,18 +65,29 @@ public class MainActivity extends Activity {
     private InputStream is=null;
     private String result=null;
     private String line=null;
+    private String publicKey = "";
     private int code;
+
     private Spinner bankListSpinner;
     private EditText nameView = null;
     private EditText emailView = null;
     private EditText phoneView = null;
     private EditText pinView = null;
     private EditText rePinView = null;
+    private TextView secureMsg = null;
+
+
+    private Secure secure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        secure = new Secure();
+        new KeyGenTask().execute(secure);
+
+
         // TODO: maybe download from server and have a local cache
         addBankList();
 
@@ -73,8 +96,9 @@ public class MainActivity extends Activity {
        phoneView   = (EditText) findViewById(R.id.editTextPhone);
        pinView      = (EditText) findViewById(R.id.editTextPin);
        rePinView    = (EditText) findViewById(R.id.editTextPin2);
-
+        secureMsg   = (TextView) findViewById(R.id.securityMsgView);
        bankListSpinner     = (Spinner) findViewById(R.id.spinnerBank);
+
 
         Button mSignUpButton = (Button)findViewById(R.id.signUp_button);
         mSignUpButton.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +108,7 @@ public class MainActivity extends Activity {
                 email   = emailView.getText().toString();
                 phone   = phoneView.getText().toString();
                 bank    = bankListSpinner.getSelectedItem().toString();
-                // todo encrypt here
+
                 pin     = pinView.getText().toString();
                 pin2    = rePinView.getText().toString();
 
@@ -97,14 +121,7 @@ public class MainActivity extends Activity {
 
     // gantlet of field validation
     protected boolean validate() {
-        // TODO: add logic
-        // Check for a valid password, if the user entered one.
-       /* if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-        */
+
         boolean valid = true;
         View focusView = null;
 
@@ -149,11 +166,16 @@ public class MainActivity extends Activity {
             focusView = rePinView;
             valid = false;
         }
+        else if (!secure.HasKeyPair()) {
+            secureMsg.setVisibility(View.VISIBLE);
+            secureMsg.setText("Security Key Not Generated");
+            valid = false;
+        }
 
         if (!valid)
             focusView.requestFocus();
 
-        return true;
+        return valid;
     }
 
     private boolean isEmailValid(String email) {
@@ -207,7 +229,7 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    // test sending json string of data
     public String jsonString() {
         String json = null;
         try {
@@ -229,6 +251,12 @@ public class MainActivity extends Activity {
 
     }
 
+    public void ShowIcon() {
+        ImageView iconView = (ImageView)findViewById(R.id.iconImage);
+        iconView.setVisibility(View.VISIBLE);
+
+    }
+
 
     public void signUp() {
 
@@ -238,17 +266,14 @@ public class MainActivity extends Activity {
         nameValuePairs.add(new BasicNameValuePair("phone",phone));
         nameValuePairs.add(new BasicNameValuePair("bank", bank));
         // encrypted
-        nameValuePairs.add(new BasicNameValuePair("pin", pin));
 
-        /*try {
-        //TODO encrypted pin
-            Secure secure = new Secure();
-            secure.GenKey();
+        try {
+
             nameValuePairs.add(new BasicNameValuePair("pin", secure.Encrypt(pin)));
-
+            nameValuePairs.add(new BasicNameValuePair("public-key", publicKey));
         } catch (Exception e) {
             Log.e("Fail 1-1", e.toString());
-        }*/
+        }
 
 
         mAuthTask = new AddUser(nameValuePairs);
@@ -331,7 +356,9 @@ public class MainActivity extends Activity {
                     SharedPreferences.Editor prefEditor = sharedPref.edit();
 
                     prefEditor.putString("email",email);
-                    prefEditor.putBoolean("registered",true);
+                    prefEditor.putBoolean("registered", true);
+                    prefEditor.putString("secure.private-key", secure.GetPrivateKeyStringBase64());
+                    prefEditor.putString("secure.public-key",publicKey);
 
                     // save settings
                     prefEditor.apply();
@@ -360,5 +387,36 @@ public class MainActivity extends Activity {
 //        }
 
     }
+
+
+    private class KeyGenTask extends AsyncTask<Secure, Integer, KeyPair> {
+        protected KeyPair doInBackground(Secure... secure) {
+
+            KeyPair pair = null;
+            try {
+                pair = secure[0].GenKey();
+                publishProgress(1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return pair;
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+            //setProgressPercent(progress[0]);
+        }
+
+        protected void onPostExecute(KeyPair pair) {
+            pair.getPrivate();
+            // set public key
+            publicKey = Secure.GetPublicBase64(pair);
+
+
+            secureMsg.setVisibility(View.VISIBLE);
+            secureMsg.setText("Security Key Generated");
+            ShowIcon();
+        }
+    }
+
 }
 

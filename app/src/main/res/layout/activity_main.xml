@@ -148,4 +148,28 @@
         android:layout_alignLeft="@+id/editTextPin"
         android:layout_alignStart="@+id/editTextPin" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iconImage"
+        android:src="@mipmap/icon"
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/emailLabel"
+        android:layout_alignStart="@+id/emailLabel"
+        android:layout_above="@+id/editTextName"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Security Key Not Set"
+        android:id="@+id/securityMsgView"
+        android:layout_above="@+id/signUp_button"
+        android:layout_alignLeft="@+id/editTextPin2"
+        android:layout_alignStart="@+id/editTextPin2"
+        android:visibility="invisible" />
+
 </RelativeLayout>
