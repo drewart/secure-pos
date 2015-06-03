@@ -4,19 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-<<<<<<< HEAD
 import android.os.AsyncTask;
 import android.os.Bundle;
-=======
 import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
->>>>>>> origin/master
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-<<<<<<< HEAD
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -33,25 +29,20 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-=======
 import android.widget.ImageButton;
->>>>>>> origin/master
 
 /**
  * Created by Andreas on 5/1/2015.
  */
 public class ActivationActivity extends Activity {
 
-<<<<<<< HEAD
     private ActivateCard mAuthTask = null;
     private InputStream is=null;
     private String line=null;
     private String result=null;
     private int code;
 
-=======
     EditText pinView = null;
->>>>>>> origin/master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +81,6 @@ public class ActivationActivity extends Activity {
     
     public void activate() {
 
-<<<<<<< HEAD
         // TODO validate pin
         SharedPreferences sharedPref = getSharedPreferences(
                 getString(R.string.share_pref_file_name), Context.MODE_PRIVATE);
@@ -211,7 +201,6 @@ public class ActivationActivity extends Activity {
 //            mAuthTask = null;
 //            showProgress(false);
 //        }
-=======
         try {
             SharedPreferences sharedPref = getSharedPreferences(
                     getString(R.string.share_pref_file_name), Context.MODE_PRIVATE);
@@ -253,9 +242,6 @@ public class ActivationActivity extends Activity {
 
         }
 
-        // clear the pin before moving to next app
-        pinView.getText().clear();
->>>>>>> origin/master
 
     }
 
