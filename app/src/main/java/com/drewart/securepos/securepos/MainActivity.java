@@ -66,6 +66,7 @@ public class MainActivity extends Activity {
     private String result=null;
     private String line=null;
     private String publicKey = "";
+    private String pinEncrypted = "";
     private int code;
 
     private Spinner bankListSpinner;
@@ -268,8 +269,8 @@ public class MainActivity extends Activity {
         // encrypted
 
         try {
-
-            nameValuePairs.add(new BasicNameValuePair("pin", secure.Encrypt(pin)));
+            pinEncrypted = secure.Encrypt(pin);
+            nameValuePairs.add(new BasicNameValuePair("pin", pinEncrypted));
             nameValuePairs.add(new BasicNameValuePair("public-key", publicKey));
         } catch (Exception e) {
             Log.e("Fail 1-1", e.toString());
@@ -355,8 +356,10 @@ public class MainActivity extends Activity {
 
                     SharedPreferences.Editor prefEditor = sharedPref.edit();
 
-                    prefEditor.putString("email",email);
+                    prefEditor.putString("email", email);
                     prefEditor.putBoolean("registered", true);
+                    prefEditor.putString("secure.pin",pinEncrypted);
+
                     prefEditor.putString("secure.private-key", secure.GetPrivateKeyStringBase64());
                     prefEditor.putString("secure.public-key",publicKey);
 
