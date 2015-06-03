@@ -12,12 +12,13 @@ import android.widget.EditText;
  */
 public class ActivationActivity extends Activity {
 
+    EditText pinView = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activation);
 
-        final EditText pinView = (EditText)findViewById(R.id.userPin);
+        pinView = (EditText)findViewById(R.id.userPin);
         pinView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,6 +42,8 @@ public class ActivationActivity extends Activity {
 
         // TODO validate pin
 
+        // clear the pin before moving to next app
+        pinView.getText().clear();
 
         Intent i = new Intent(getApplicationContext(), BarcodeActivity.class);
         startActivity(i);
