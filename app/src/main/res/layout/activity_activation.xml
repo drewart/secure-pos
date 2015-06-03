@@ -71,4 +71,19 @@
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/userLimit"
         android:layout_toStartOf="@+id/userLimit" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resetButton"
+        android:src="@mipmap/icon"
+        android:scaleType="centerInside"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:maxHeight="50dp"
+        android:maxWidth="50dp"
+        android:layout_alignRight="@+id/userPin"
+        android:layout_alignEnd="@+id/userPin"
+        android:layout_above="@+id/pinPrompt" />
 </RelativeLayout>
