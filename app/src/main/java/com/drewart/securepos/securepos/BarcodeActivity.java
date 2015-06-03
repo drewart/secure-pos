@@ -1,7 +1,10 @@
 package com.drewart.securepos.securepos;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -140,9 +143,20 @@ public class BarcodeActivity extends Activity {
         return null;
     }
 
+    //for closing this from NumDisplay
+    BroadcastReceiver bc = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
 
+                String action = intent.getAction();
+                if (action.equals("finish_barcode")) {
+                    finish();
+                }
+        }
+    };
 
-
+    //this is supposed to go somewhere. idk yet
+    //registerReceiver(bc, new IntentFilter("finish_activity"));
 
     public void switchToNumber() {
         Intent i = new Intent(getApplicationContext(), NumberDisplayActivity.class);
