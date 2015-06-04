@@ -34,22 +34,12 @@ public class NumberDisplayActivity extends Activity {
         });
     }
 
-
-    //want to also close barcode from here for backward navigation
-    //possible logic 1: make this page close itself, then "finish" in barcode
-    //possible logic 2: "finish" barcode first from here, then close this page
-    //problems: "singleInstance" prevents user from activating multiple times in one opening
-    //      can't call "finish" or "completionPage" functions directly: static in nonstatic context
-    //
     public void completionPage() {
         Intent i = new Intent(getApplicationContext(), ConfirmationActivity.class);
         startActivity(i);
         Intent intent = new Intent("finish_barcode");
         sendBroadcast(intent);
-        //BarcodeActivity.finish();
         finish();
-
-        //BarcodeActivity.completionPage();
     }
 
 }

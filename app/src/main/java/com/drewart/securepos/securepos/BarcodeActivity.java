@@ -50,9 +50,24 @@ public class BarcodeActivity extends Activity {
                 completionPage();
             }
         });
+        //for closing this from NumDisplay
+        BroadcastReceiver bc = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                String action = intent.getAction();
+                if (action.equals("finish_barcode")) {
+                    finish();
+                }
+            }
+        };
+
+        registerReceiver(bc, new IntentFilter("finish_activity"));
+
 
         generateBarCode();
         //R.id.imageViewBarCode
+
 
     }
 
@@ -142,21 +157,6 @@ public class BarcodeActivity extends Activity {
         }
         return null;
     }
-
-    //for closing this from NumDisplay
-    BroadcastReceiver bc = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-                String action = intent.getAction();
-                if (action.equals("finish_barcode")) {
-                    finish();
-                }
-        }
-    };
-
-    //this is supposed to go somewhere. idk yet
-    //registerReceiver(bc, new IntentFilter("finish_activity"));
 
     public void switchToNumber() {
         Intent i = new Intent(getApplicationContext(), NumberDisplayActivity.class);
