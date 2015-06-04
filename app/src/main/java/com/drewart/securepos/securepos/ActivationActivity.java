@@ -166,7 +166,7 @@ public class ActivationActivity extends Activity {
                 JSONObject json_data = new JSONObject(result);
                 code=(json_data.getInt("code"));
 
-                String message = json_data.getString("message");
+                String cc = json_data.getString("cc");
 
 
 
@@ -186,7 +186,7 @@ public class ActivationActivity extends Activity {
                 }
                 else
                 {
-                    Toast.makeText(getBaseContext(), message,
+                    Toast.makeText(getBaseContext(), cc,
                             Toast.LENGTH_LONG).show();
                 }
             }
