@@ -122,7 +122,7 @@ public class MainActivity extends Activity {
 
     // gantlet of field validation
     protected boolean validate() {
-<<<<<<< HEAD
+//<<<<<<< HEAD
         //
         // Check for a valid password, if the user entered one.
        /* if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
@@ -131,9 +131,9 @@ public class MainActivity extends Activity {
             cancel = true;
         }
         */
-=======
+//=======
 
->>>>>>> origin/master
+//>>>>>>> origin/master
         boolean valid = true;
         View focusView = null;
 
