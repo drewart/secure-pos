@@ -3,42 +3,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false"
-    android:weightSum="1"
-    android:orientation="horizontal"
-    android:id="@+id/">
+    android:id="@+id/id">
 
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:src="@mipmap/samplebarcode"
+        android:id="@+id/imageViewBarCode"
+        android:layout_marginTop="46dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:outlineProvider="background"
+        android:minHeight="300dp"
+        android:minWidth="100dp"
+        android:maxWidth="200dp"
+        android:longClickable="true"
+        android:maxHeight="500dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Deactivate"
         android:id="@+id/deactivateButton"
-        android:layout_marginRight="103dp"
-        android:layout_marginEnd="103dp"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignTop="@+id/number_display_button"
+        android:layout_toRightOf="@+id/imageViewBarCode"
+        android:layout_toEndOf="@+id/imageViewBarCode"
+        android:layout_marginLeft="45dp"
+        android:layout_marginStart="45dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="card number"
-        android:id="@+id/cardnumber"
-        android:layout_marginLeft="111dp"
-        android:layout_marginStart="111dp"
-        android:layout_alignTop="@+id/deactivateButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/number_display_button"
+        android:layout_marginBottom="43dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/imageViewBarCode"
+        android:layout_toStartOf="@+id/imageViewBarCode"
+        android:layout_marginRight="26dp"
+        android:layout_marginEnd="26dp" />
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chronometer"
+        android:layout_alignBottom="@+id/number_display_button"
+        android:layout_centerHorizontal="true"
+        android:text="60" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageViewBarCode"
+        android:layout_toRightOf="@+id/number_display_button"
+        android:layout_toLeftOf="@+id/deactivateButton"
+        android:layout_toStartOf="@+id/deactivateButton"
+        android:id="@+id/linearLayout"></LinearLayout>
 </RelativeLayout>

@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/editTextName"
         android:layout_alignBottom="@+id/textView"
         android:layout_alignLeft="@+id/editTextEmail"
         android:layout_alignStart="@+id/editTextEmail" />
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/editTextPhone"
         android:layout_alignBottom="@+id/textView3"
         android:layout_alignLeft="@+id/editTextEmail"
         android:layout_alignStart="@+id/editTextEmail" />
@@ -83,30 +83,93 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Bank"
         android:id="@+id/textView4"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/textView3"
         android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3" />
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginTop="21dp" />
 
-    <ListView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:choiceMode="singleChoice"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:text="Sign Up"
+        android:id="@+id/signUp_button"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="24dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerBank"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_alignLeft="@+id/editTextPhone"
+        android:layout_alignStart="@+id/editTextPhone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Pin"
+        android:id="@+id/textViewPin"
+        android:layout_below="@+id/spinnerBank"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberPassword"
+        android:ems="10"
+        android:id="@+id/editTextPin"
+        android:layout_below="@+id/spinnerBank"
+        android:layout_alignLeft="@+id/spinnerBank"
+        android:layout_alignStart="@+id/spinnerBank" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Re-Pin"
+        android:id="@+id/textView6"
+        android:layout_below="@+id/editTextPin"
+        android:layout_alignLeft="@+id/textViewPin"
+        android:layout_alignStart="@+id/textViewPin" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberPassword"
+        android:ems="10"
+        android:id="@+id/editTextPin2"
+        android:layout_alignTop="@+id/textView6"
+        android:layout_alignLeft="@+id/editTextPin"
+        android:layout_alignStart="@+id/editTextPin" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iconImage"
+        android:src="@mipmap/icon"
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/emailLabel"
+        android:layout_alignStart="@+id/emailLabel"
+        android:layout_above="@+id/editTextName"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Security Key Not Set"
+        android:id="@+id/securityMsgView"
+        android:layout_above="@+id/signUp_button"
+        android:layout_alignLeft="@+id/editTextPin2"
+        android:layout_alignStart="@+id/editTextPin2"
+        android:visibility="invisible" />
 
 </RelativeLayout>

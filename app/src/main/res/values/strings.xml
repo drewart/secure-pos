@@ -3,4 +3,16 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Login Page</string>
+    <string name="title_activity_activation">Activation Page</string>
+    <string name="title_activity_barcode">Barcode Page</string>
+    <string name="title_activity_number_display">Number Display Page</string>
+    <string name="title_activity_confirmation">Thank you!</string>
+
+    <string name="share_pref_file_name">local.setting</string>
+
+    <string name="pin_error_length">Pin is not long enough</string>
+    <string name="pin_error_match">Pin does not match</string>
+    <string name="phone_digit_length">Phone is not long enough</string>
+    <string name="encryption_generated">encryption generated</string>
 </resources>
